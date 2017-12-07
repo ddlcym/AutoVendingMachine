@@ -1,0 +1,60 @@
+<resources>
+    <string name="app_name">AutoVendingMachine</string>
+    <string name="action_settings">Settings</string>
+    <string name="DEVICE">/dev/smd36</string>
+    <string name="BAUDRATE">115200</string>
+    <string name="download_progress" translatable="false">正在下载:%1$d%%</string>
+    <string name="about_msg">
+Serial Port API sample v1.1\n
+\n
+This program is the sample application provided with project android-serialport-api.\n
+\n
+More information and bug report on [http://code.google.com/p/android-serialport-api]\n
+\n
+Copyright 2010-2011 Cedric Priscal\n
+\n
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at\n
+\n
+http://www.apache.org/licenses/LICENSE-2.0\n
+\n
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.\n
+	</string>
+    <string name="error_configuration">Please configure your serial port first.</string>
+    <string name="error_security">You do not have read/write permission to the serial
+		port.</string>
+    <string name="error_unknown">The serial port can not be opened for an unknown
+		reason.</string>
+    <string name="temp">温度</string>
+    <string name="humidity">湿度</string>
+    <string name="excellent">优</string>
+    <string name="good">良</string>
+    <string name="bad">差</string>
+    <string name="error_code">错误代码</string>
+    <string name="making">正在出货中.....</string>
+    <string name="machine_stoppage">机器故障</string>
+    <string name="machine_stoppage_shop">售卖机故障</string>
+    <string name="machine_maintenance">维护中</string>
+    <string name="machine_stoppage_port">串口故障</string>
+    <string name="network_error">网络错误</string>
+    <string name="water_cycle">正在水循环，请稍后购买</string>
+    <string name="buy">微信扫码购买</string>
+    <string name="hot_coffee">热咖啡</string>
+    <string name="hot_tea_milk">热奶茶</string>
+    <string name="ice_water">瓶装水</string>
+    <string name="hot_water">兑换\n电影票</string>
+    <string name="service_telephone">服务电话4006789696</string>
+    <string name="open_door_error">仓门打开，禁止扫码</string>
+    <string name="sensor_error">传感器错误，禁止扫码</string>
+    <string name="goods_error">货道出错：</string>
+    <string name="device_self_test">设备自检中...</string>
+    <string name="open_door_inspection">门未关</string>
+    <string name="cntr_failure">出货失败，稍后退款，请见谅</string>
+    <string name="cntr_success">出货成功,请取出</string>
+
+</resources>
