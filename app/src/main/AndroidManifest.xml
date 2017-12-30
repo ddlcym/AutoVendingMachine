@@ -54,12 +54,6 @@
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"></uses-permission>
 
 
-    <receiver android:name="com.ilike.cartoon.broadcast.NetWorkBroadcast">
-        <intent-filter>
-            <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-        </intent-filter>
-    </receiver>
-
     <!--android:name="com.doing.flat.coffee.utils.App"-->
     <application
         android:name="android_serialport_api.sample.Application"

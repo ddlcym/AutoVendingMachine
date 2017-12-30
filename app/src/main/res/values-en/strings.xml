@@ -3,7 +3,6 @@
     <string name="action_settings">Settings</string>
     <string name="DEVICE">/dev/smd36</string>
     <string name="BAUDRATE">115200</string>
-    <string name="download_progress" translatable="false">正在下载:%1$d%%</string>
     <string name="about_msg">
 Serial Port API sample v1.1\n
 \n

@@ -417,8 +417,7 @@ public class CoffeeRs232Activity extends SerialPortActivity {
         autoValue = autoValue.replace("00 a5 a5", " a5 a5");
         autoValue = autoValue.replace(" 00 00 a5 a5", " a5 a5");
         autoValue = autoValue.replace("  a5 a5", " a5 a5");
-//        L.i("autoValue:"+autoValue);
-//        Log.e("autoValue", autoValue.replace(" ", " "));
+//        L.i("autoValue:"+autoValue.replace(" ", " "));
         String[] str1 = autoValue.split(" ");
 
         if (str1.length > 252 && autoValue.startsWith("aa 55 ff") && autoValue.contains("50 05 ff ff") ||
@@ -2112,11 +2111,13 @@ public class CoffeeRs232Activity extends SerialPortActivity {
             e.printStackTrace();
             socketStat = false;
             mSocket = null;
+            L.i("initSocket-error:"+e.getMessage());
             setBUG();
         } catch (IOException e) {
             e.printStackTrace();
             socketStat = false;
             mSocket = null;
+            L.i("initSocket-error:"+e.getMessage());
             setBUG();
         }
     }
@@ -2277,9 +2278,8 @@ public class CoffeeRs232Activity extends SerialPortActivity {
                             atInt = 0;
                             ////收到服务器过来的消息，就通过Broadcast发送出去
                             if (connet.equals("@")) {//处理心跳回复
-                                Utils.LogE(connet);
                             } else {
-                                Utils.LogE(" mWeakSocket.get()=" + connet);
+                                L.i("ReadTCPThread:"+" mWeakSocket.get()=" + connet);
 //                                toast_connet = connet;
 //                                toastHandler.sendEmptyMessage(123);
 //                                ResultWaterEntity waterEntity = null;
@@ -2953,8 +2953,8 @@ public class CoffeeRs232Activity extends SerialPortActivity {
             if (isShowQRCode) {
                 if (mSocket != null && image_dit != null && isSuccess) {
                     //yanshi临时注释
-//                    imageCode.setImageBitmap(image_dit);
-                    imageCode.setImageResource(R.mipmap.erweima);
+                    imageCode.setImageBitmap(image_dit);
+//                    imageCode.setImageResource(R.mipmap.erweima);
                     textHint.setText(getString(R.string.buy));
                     if (dataEntity != null && textNumber != null) {
                         textNumber.setText("机器编号：" + dataEntity.getDevice_id());
@@ -3082,7 +3082,7 @@ public class CoffeeRs232Activity extends SerialPortActivity {
         entity.setApp_ver(setApp_ver);
         entity.setOperation(operation);
         String dataStr = JSON.toJSONString(entity) + "\n";
-        Utils.LogE(dataStr);
+        L.i("sendData2-datastr:"+dataStr);
         if (!soc.isClosed() && !soc.isOutputShutdown()) {
             try {
                 OutputStream out = soc.getOutputStream();

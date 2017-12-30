@@ -143,6 +143,19 @@ public class Utils {
         tempStr += "ffffffff ";
         tempStr += "ffffffff ";
         tempStr += "ffffffff ";
+
+
+        String sales = ((entity.getSales()));
+        if (sales.length() == 1) {
+            sales = "0" + sales;
+        } else if (sales.length() == 0) {
+            sales = "00";
+        }
+        tempStr += " " + sales + "ff";
+        tempStr +=  entity.getSensor() + "";//检测传感器
+        tempStr += "ff";
+
+
         tempStr += "ffffffff ";
         tempStr += "ffffffff ";
         tempStr += "ffffffff ";
@@ -183,15 +196,7 @@ public class Utils {
             serial_number_temp = "00";
         }
         tempStr +=serial_number_temp ;
-        String sales = ((entity.getSales()));
-        if (sales.length() == 1) {
-            sales = "0" + sales;
-        } else if (sales.length() == 0) {
-            sales = "00";
-        }
-        tempStr += " " + sales + "ff";
-        tempStr +=  entity.getSensor() + "";//检测传感器
-        tempStr += "ff";
+
 
         for (int i = 0; i < 7; i++) {
             tempStr += " ffffffff";
@@ -236,6 +241,18 @@ public class Utils {
         tempStr += "00000000 ";
         tempStr += "00000000 ";
         tempStr += "00000000 ";
+
+        String serial_number_temp=Integer.toHexString(goodsChannel);
+        if (serial_number_temp.length() == 1) {
+            serial_number_temp = " 0" + serial_number_temp;
+        } else if (serial_number_temp.length() == 0) {
+            serial_number_temp = " 00";
+        }
+        tempStr +=serial_number_temp ;//货道号
+        String sales = "ff";
+        tempStr += sales + "ff";
+        tempStr +=  "ff" + "";//检测传感器
+
         tempStr += "00000000 ";
         tempStr += "00000000 ";
         tempStr += "00000000 ";
@@ -250,18 +267,6 @@ public class Utils {
         tempStr += " 00000000";
         tempStr += " 00000000";
         tempStr += " 00000000";
-
-
-        String serial_number_temp=Integer.toHexString(goodsChannel);
-        if (serial_number_temp.length() == 1) {
-            serial_number_temp = " 0" + serial_number_temp;
-        } else if (serial_number_temp.length() == 0) {
-            serial_number_temp = " 00";
-        }
-        tempStr +=serial_number_temp ;//货道号
-        String sales = "ff";
-        tempStr += sales + "ff";
-        tempStr +=  "ff" + "";//检测传感器
 
         for (int i = 0; i < 8; i++) {
             tempStr += " 00000000";
