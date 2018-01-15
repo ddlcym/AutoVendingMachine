@@ -1,13 +1,12 @@
 package com.doing.flat.coffee;
 
-import android.app.AlertDialog;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
-import android.widget.Toast;
 
-import com.doing.flat.coffee.Unionpay.InitUnionpay;
+import com.doing.flat.coffee.unionpay.InitUnionpay;
+import com.doing.flat.coffee.unionpay.ReadICCard;
 import com.doing.flat.coffee.utils.CommonData;
 import com.doing.flat.coffee.utils.Utils;
 import com.doing.flat.nostra13.universalimageloader.utils.L;
@@ -43,7 +42,14 @@ public class ExpendService extends Service {
         if (intent != null) {
             int serverMessage = intent.getIntExtra(CommonData.Service_Message, 0);
             if(CommonData.Service_GetICCard==serverMessage){
+                new ReadICCard(new ReadICCard.RCCallBack() {
+                    @Override
+                    public void dealCard(String card) {
+                        //获取到银行卡号
 
+
+                    }
+                }).start();
             }
         }
         return super.onStartCommand(intent, flags, startId);

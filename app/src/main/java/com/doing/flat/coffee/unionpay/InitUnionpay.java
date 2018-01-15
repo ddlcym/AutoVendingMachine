@@ -1,4 +1,4 @@
-package com.doing.flat.coffee.Unionpay;
+package com.doing.flat.coffee.unionpay;
 
 import android.content.Context;
 

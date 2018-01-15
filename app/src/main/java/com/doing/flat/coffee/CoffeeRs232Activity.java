@@ -395,7 +395,7 @@ public class CoffeeRs232Activity extends SerialPortActivity {
     private String is_deivece = "3";//给服务器发送机器状态 1正常，2制水中，3异常ff, 4表示有其他故障
     private String coffee_bug_state = "2";//00表示正常，其他表示异常
     private String coffee_state = "ff";//00表示正常，其他表示异常
-    private String Cntr_state = "0";//233  00-空闲 01-出货中 02-设备故障 03-维护中
+    private String Cntr_state = "0";//233  00-空闲 01-出货中 05-设备故障 04-维护中
     private String Cntr_bug_state = "0";//234  0：全部仓良好；1-50：某号仓故障；101-150：某号仓已修好；（百位1表示修好，十位个位表示仓号）FF：全部仓故障；其他数值无意义
     private String Cntr_transaction_state = "0";  //235 交易执行状态  00-空闲  01-出货进行中 02-出货成功（发3次） 03-出货失败（发3次） （交易结束，发3次出货成功或失败后，该字节置成00）
     private String open_door = "";//234 开门 0表示关门 1表示开门
@@ -492,11 +492,21 @@ public class CoffeeRs232Activity extends SerialPortActivity {
 //            entity.setCntr_num(Integer.parseInt(str1[278], 16) + "");
 //            entity.setCntr_count(Integer.parseInt(str1[279], 16) + "");
 
-            entity.setCntr_state(Integer.parseInt(str1[233], 16) + "");
-            entity.setCntr_bug_state(Integer.parseInt(str1[234], 16) + "");
-            entity.setOpen_door(Integer.parseInt(str1[234], 16) + "");
-            entity.setCntr_transaction_state(Integer.parseInt(str1[235], 16) + "");
-            entity.setSensor(Integer.parseInt(str1[236], 16) + "");
+            //协议修改前
+//            entity.setCntr_state(Integer.parseInt(str1[233], 16) + "");
+//            entity.setCntr_bug_state(Integer.parseInt(str1[234], 16) + "");
+//            entity.setOpen_door(Integer.parseInt(str1[234], 16) + "");
+//            entity.setCntr_transaction_state(Integer.parseInt(str1[235], 16) + "");
+//            entity.setSensor(Integer.parseInt(str1[236], 16) + "");
+
+            //协议修改后
+            entity.setCntr_state(Integer.parseInt(str1[41], 16) + "");
+            entity.setCntr_bug_state(Integer.parseInt(str1[42], 16) + "");
+            entity.setOpen_door(Integer.parseInt(str1[42], 16) + "");
+            entity.setCntr_transaction_state(Integer.parseInt(str1[41], 16) + "");
+            entity.setSensor(Integer.parseInt(str1[44], 16) + "");
+            L.i(" Cntr_state41:--   "+entity.getCntr_state()+"   --Cntr_bug_state42:   "+entity.getCntr_bug_state()+"     Cntr_transaction_state41:     "+entity.getCntr_transaction_state());
+
 //            entity.setCntr_num(Integer.parseInt(str1[235], 16) + "");
 //            entity.setCntr_count(Integer.parseInt(str1[236], 16) + "");
 
@@ -698,17 +708,18 @@ public class CoffeeRs232Activity extends SerialPortActivity {
                 textGoodsEerror.setVisibility(View.INVISIBLE);
             }
 
-            if (!open_door.equals(entity.getOpen_door()))//判断开门是否改变
-            {
-                open_door = entity.getOpen_door();
-                if (mSocket != null && open_door.equals("1") && dataEntity != null) {
-                    //加一个发送服务器命令
-                    DataOptEntity dataOptEntity = new DataOptEntity();
-                    dataOptEntity.setDevice_id(dataEntity.getDevice_id());
-                    sendData2(UploadCntrDoor, dataOptEntity);
-
-                }
-            }
+                //小售货机不需要开门20180111
+//            if (!open_door.equals(entity.getOpen_door()))//判断开门是否改变
+//            {
+//                open_door = entity.getOpen_door();
+//                if (mSocket != null && open_door.equals("1") && dataEntity != null) {
+//                    //加一个发送服务器命令
+//                    DataOptEntity dataOptEntity = new DataOptEntity();
+//                    dataOptEntity.setDevice_id(dataEntity.getDevice_id());
+//                    sendData2(UploadCntrDoor, dataOptEntity);
+//
+//                }
+//            }
 
             if (entity.getCoffee_state() != null) {
                 String coffee_state = entity.getCoffee_state();
@@ -810,8 +821,8 @@ public class CoffeeRs232Activity extends SerialPortActivity {
                     }
                 }
                 //同时判断机器两个状态，都可用才能显示二维码
-                L.i("test1"+"Cntr_state: "+Cntr_state+" Cntr_transaction_state: "+Cntr_transaction_state
-                        +"Open_door: "+entity.getOpen_door()+" Sensor: "+entity.getSensor());
+//                L.i("test1"+"Cntr_state: "+Cntr_state+" Cntr_transaction_state: "+Cntr_transaction_state
+//                        +"Open_door: "+entity.getOpen_door()+" Sensor: "+entity.getSensor());
 
                 //临时注释测试使用
 //                if ((Cntr_state.equals("0") || Cntr_state.equals("00"))
@@ -2096,7 +2107,7 @@ public class CoffeeRs232Activity extends SerialPortActivity {
 
     private boolean socketStat = false;
 
-    private void initSocket() {//初始化Socket
+    private void initSocket() {//初始化Socket0
         try {
             socketStat = true;
             Socket so = new Socket(HOST, PORT);
@@ -2233,7 +2244,7 @@ public class CoffeeRs232Activity extends SerialPortActivity {
     private String opt_type = "";
     private String image_path = "";
     private String image_qc = "";
-    private String Sales_opt_type = "";
+    private String Sales_opt_type = "1";//出货数量
     private String Sales_opt_id = "";
 
     private long ProduceDrink_count = 0;

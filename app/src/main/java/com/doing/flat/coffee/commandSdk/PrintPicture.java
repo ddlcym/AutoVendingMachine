@@ -1,4 +1,4 @@
-package com.doing.flat.coffee.CommandSdk;
+package com.doing.flat.coffee.commandSdk;
 
 import android.graphics.Bitmap;
 

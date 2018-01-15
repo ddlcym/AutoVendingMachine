@@ -7,5 +7,5 @@ package com.doing.flat.coffee.utils;
 public class CommonData {
 
     public  final static String Service_Message="serverMessage";
-    public final static int Service_GetICCard =2001;
+    public final static int Service_GetICCard =2001; //获取银行卡卡号信息
 }

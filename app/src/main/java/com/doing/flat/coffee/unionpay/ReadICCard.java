@@ -1,4 +1,4 @@
-package com.doing.flat.coffee.Unionpay;
+package com.doing.flat.coffee.unionpay;
 
 import com.doing.flat.coffee.download.utils.TextUtils;
 
@@ -12,6 +12,7 @@ public class ReadICCard extends Thread {
 
     private boolean flag = true;
     private RCCallBack rcCallBack;
+    private static final int delayTime =1000;
 
     public ReadICCard(RCCallBack callBack) {
         this.rcCallBack = callBack;
@@ -28,7 +29,7 @@ public class ReadICCard extends Thread {
                 flag = false;
             }
             try {
-                sleep(1000);
+                sleep(delayTime);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -38,5 +39,9 @@ public class ReadICCard extends Thread {
 
     public interface RCCallBack {
         void dealCard(String card);
+    }
+
+    public void stopRead(){
+        flag=false;
     }
 }
